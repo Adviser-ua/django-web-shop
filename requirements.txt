@@ -1,0 +1,4 @@
+django
+django-paypal
+South>=1.0.1
+Pillow
