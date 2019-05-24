@@ -1,0 +1,127 @@
+.header{
+	/*border: 3px solid #00a8e1;*/
+	height: 73px;
+	background: rgba(255, 255, 255, 0.5);
+	position: fixed;
+	width: 100%;
+	max-width: 3200px;
+	/*margin: 30px;*/	
+	z-index: 2;
+	/*opacity: 0.5;*/
+}
+.header.logo{
+/*	border: 3px solid black;*/
+	
+}
+.header .logo img{
+	width: 8%;
+	/*border: 3px solid black;*/
+	float: left;
+	margin-left: 2%;
+}
+.row .col-1{
+	width: 20%;
+	float: left;
+	text-align: right;
+	/* border: 3px solid black; */
+	margin-top: 1.5%;
+}
+.row .col-1 a{
+	color: #696969;
+	text-decoration: none;
+}
+.rov .col-1:hover{
+	transform: scale(1.2, 0.5);
+}
+.row .col-1 a:hover{
+	color: black;
+	/*font-size: 105%;*/
+	/*font-weight: bold;*/
+	transform: scale(1.2, 0.5);
+}
+
+
+/*------------------main------------------*/	
+
+.main {
+	/*border: 3px solid violet;*/
+	/*padding: 15px;*/
+	
+	height: 650px;
+	position: relative;
+	padding: 75px 0 80px 50px;
+	z-index: 1;
+}
+ .main .mainText, .main .mainPicture{
+	float: left;
+	/*position: absolute;*/
+	/*border: 3px solid red;*/
+	width: 40%;
+}
+ .main .mainText{
+	 width: 40%;
+	 margin: 15% 0;
+ }
+ .main .mainPicture{
+	 width: 55%;
+	 height: 100%;
+	position: relative;
+ }
+.main .mainPicture img{
+	height: 100%;
+	/*border: 3px solid black;*/
+	margin: -1%;
+	position: absolute;
+	 margin: 0 10%;
+}
+.main .mainText p{
+	font-size: 25pt;
+	/*top: 500px;
+	left: 200px;*/
+}
+
+/*------------------footer------------------*/	
+
+.footer{
+	/*border: 3px solid #00FF00;*/
+	/*top: 680px;*/
+	/*padding: 80px;*/
+	height: 120px;
+	background: black;
+}
+.footer .colfirst img{
+	width: 8%;
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+/*.footer .colfirst .colsecond .colthird p{
+	color: white;
+}*/
+.footer .colfirst p{
+	color: white;
+	text-align: center;
+}
+.footer .colsecond p{
+	color: white;
+	text-align: center;
+}
+.footer .colthird p{
+	color: white;
+	text-align: center;
+}
+.footer .colfirst {
+	width: 32%;
+	float: left;
+	/*border: 3px solid #FF00FF;*/
+}
+.footer .colsecond {
+	width: 32%;
+	/*border: 3px solid #FF00FF;*/
+	float: left;
+}
+.footer .colthird {
+	/*border: 3px solid #FF00FF;*/
+	float: right;
+	width: 32%;
+}

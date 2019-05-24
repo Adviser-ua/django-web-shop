@@ -1,0 +1,99 @@
+input {
+  border: 0.3em solid #bbc3c6;
+  padding: 0.5em 0.3em;
+  font-size: 1.4em;
+  color: #8a8a8a;
+  text-align: center;
+}
+
+.cartImg {
+  max-width: 9em;
+  width: 100%;
+  overflow: hidden;
+  margin-right: 1em;
+}
+
+.cart {
+  font-size: 1.5em;
+  color: #8a8a8a;
+  overflow: hidden;
+  font: 62.5%/1.5em "Trebuchet Ms", helvetica;
+  font-smoothing: antialiased;
+  margin-top: 15%;
+}
+
+.table {
+  background: #ffffff;
+  border-radius: 0.6em;
+  overflow: hidden;
+  clear: both;
+  margin-bottom: 1.8em;
+  border: 1px solid black;
+}
+
+
+.layout-inline > * {
+  display: inline-block;
+}
+
+.align-center {
+  text-align: center;
+}
+
+
+.th {
+  background: #000000;
+  color: #fff;
+  height: 3em;
+  font-size: 1.3em;
+  text-transform: uppercase;
+  vertical-align: middle;
+
+}
+
+.col {
+  padding: 1em;
+  width: 12%;
+}
+
+.col-pro {
+  width: 44%;
+}
+
+.col-pro > * {
+  vertical-align: middle;
+}
+
+.col-qty {
+  text-align: center;
+  width: 17%;
+}
+
+.col-numeric p {
+  font: bold 1.8em helvetica;
+}
+
+.col-qty > * {
+  vertical-align: middle;
+}
+
+.col-qty > input {
+  max-width: 2.6em;
+}
+
+
+a.qty {
+  width: 1em;
+  line-height: 1em;
+  opacity: 0.5;
+  font-size: 4em;
+  font-weight: bold;
+  text-align: center;
+  background: #000000;
+  color: #fff;
+}
+
+.cartItem {
+    border: solid 1px #aaaaaa;
+    padding: 5px;
+}

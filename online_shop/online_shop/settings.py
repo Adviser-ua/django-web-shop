@@ -24,7 +24,9 @@ SECRET_KEY = 'e8wcu=rh1v%t(xg5&*392=)&sgc@ra=_@r_-uihyu#hjnauson'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-PAYPAL_TEST = True
+
+LIQPAY_PUBLIC_KEY = os.environ.get('LIQPAY_PUBLIC_KEY')
+LIQPAY_PRIVATE_KEY = os.environ.get('LIQPAY_PRIVATE_KEY')
 
 ALLOWED_HOSTS = []
 
@@ -38,9 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'paypal.standard.ipn',
     'orders',
     'shop',
+    'payment',
+    'contacts',
+    'cart'
 ]
 
 MIDDLEWARE = [
@@ -123,8 +127,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),
+  #'/var/www/static/',
+]
 
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# Session ID
+
+CART_SESSION_ID = 'cart'
+
+

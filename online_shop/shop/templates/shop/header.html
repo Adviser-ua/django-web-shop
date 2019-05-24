@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<div class="header">
+	<div class="logo">
+		<a href="{% url 'shop:home' %}">
+			<img src="{% static "logo.png" %}" alt="logo">
+		</a>
+	</div>
+
+	<div class="row">
+		<div class="col-1">
+			<a href="{% url 'shop:home' %}"> Главная </a>
+		</div>
+		<div class="col-1">
+			<a href="{% url 'shop:ProductList' %}"> Магазин </a>
+		</div>
+		<div class="col-1">
+			<a href="{% url 'contacts:pay_ship' %}"> Оплата и доставка </a>
+		</div>
+		<div class="col-1">
+			<a href="{% url 'contacts:contacts' %}"> Контакты </a>
+		</div>
+		<div class="col-1">
+			<a href="{% url 'cart:CartDetail' %}"> Корзина </a>
+		</div>
+	</div>
+</div>

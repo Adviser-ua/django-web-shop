@@ -2,11 +2,11 @@
 # Konstantyn Davidenko
 
 from django.conf.urls import url
-from . import views
+
+from payment.views import PayView, PayCallbackView
 
 
 urlpatterns = [
-    url(r'^process/$', views.PaymentProcess, name='process'),
-    url(r'^done/$', views.PaymentDone, name='done'),
-    url(r'^canceled/$', views.PaymentCanceled, name='canceled')
+    url(r'^pay/$', PayView.as_view(), name='pay_view'),
+    url(r'^pay-callback/$', PayCallbackView.as_view(), name='pay_callback'),
 ]

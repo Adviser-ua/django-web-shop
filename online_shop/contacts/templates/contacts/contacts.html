@@ -1,0 +1,23 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}
+    <title>piTon Контакты</title>
+{% endblock %}
+
+{% block content %}
+
+<div id="contacts" class="main col-1 content">
+    <p><i><b>Наши контакты</b></i></p>
+    {% for contact in contacts %}
+        <div class="colsecond">
+            <p>{{ contact.person }}</p>
+        </div>
+        <div class="colthird">
+            <p>{{ contact.m_phone }}</p>
+            <p>{{ contact.email }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
