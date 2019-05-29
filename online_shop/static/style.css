@@ -96,7 +96,8 @@ form input {
 	display: block;
     margin-left: 10%;
     margin-right: 5%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    text-align: center;
 }
 .detailDescription{
     border: 1px solid black;
@@ -128,9 +129,9 @@ display: block;
 
 
 .modal-hover-opacity {
-opacity:1;
-filter:alpha(opacity=100);
--webkit-backface-visibility:hidden
+    opacity:1;
+    filter:alpha(opacity=100);
+    -webkit-backface-visibility:hidden
 }
 
 .modal-hover-opacity:hover {
@@ -143,10 +144,12 @@ filter:alpha(opacity=60);
 .close {
 text-decoration:none;float:right;font-size:24px;font-weight:bold;color:white
 }
+
 .container1 {
-width:200px;
-display:inline-block;
+    width:200px;
+    display:inline-block;
 }
+
 .modal-content, #caption {
 
     -webkit-animation-name: zoom;
@@ -158,5 +161,10 @@ display:inline-block;
 .pagination {
     border: 1px solid black;
     text-align: center;
-    text-align: center;
+    padding: 5px;
+}
+
+form input{
+    height: 30px;
+    vertical-align: top;
 }

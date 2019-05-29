@@ -1,29 +1,43 @@
 
 .orderTable td{
-    width: 300px;
+    width: 30em;
     border-bottom: 1px solid black;
-
+    text-align: center;
 }
 
 ul li {
-    color: blue;
+    color: #ddd;
     width:200px;
-    float:left;
 }
 
-form li {
-    border-bottom: 1px solid black;
+li {
+    list-style-type: none;
 }
 
 form li label {
-    color: blue;
     width:200px;
     float:left;
+    vertical-align: bottom;
 }
 
 form li input {
     border: 1px solid black;
-
+    height: 15px;
     background: #ddd;
-    text-align: left
+    text-align: left;
+    margin: 5px;
+}
+
+.Total {
+    text-align: right;
+}
+.orderTitle {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:22px;
+    text-align: center;
+}
+.orderSubmit {
+    padding: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
 }

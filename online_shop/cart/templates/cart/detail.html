@@ -35,7 +35,10 @@
             </div>
             {% endfor %}
         </div>
-        <a href="{% url 'orders:OrderCreate' %}">Заказать</a>
+
+        <a href="{% url 'orders:OrderCreate' %}">
+            <button>Заказать</button>
+        </a>
 
     </div>
 </div>
@@ -67,6 +70,7 @@
     function payOrder() {
         document.getElementById("modalPay").style.display = "block";
     }
+
 
 </script>
 

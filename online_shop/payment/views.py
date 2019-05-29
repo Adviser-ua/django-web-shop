@@ -28,6 +28,7 @@ class PayView(TemplateView):
             'order_id': order_id,
             'version': '3',
             'sandbox': 1,  # sandbox mode, set to 1 to enable it
+            'server_url': reverse('payment:pay_callback'),  # url to callback view
         }
         signature = liqpay.cnb_signature(params)
         data = liqpay.cnb_data(params)
@@ -39,6 +40,7 @@ class PayCallbackView(View):
     def post(self, request, *args, **kwargs):
         liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
         data = request.POST.get('data')
+        print(data)
         signature = request.POST.get('signature')
         sign = liqpay.str_to_sign(settings.LIQPAY_PRIVATE_KEY + data + settings.LIQPAY_PRIVATE_KEY)
         if sign == signature:
