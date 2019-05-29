@@ -1,29 +1,58 @@
 {% extends 'shop/base.html' %}
 {% load staticfiles %}
 {% block content %}
+<style>
 
+</style>
 <div id="itemDetail" class="main content">
-    <div>
-        <h4>{{product.name}}</h4><br/>
+    <div class="detailDescription">
         <div class="big_view">
             <img class="" src="{{product.images.first.image.url}}" width="311" height="319"/><br/>
-            <span>{{product.price}} грн</span>
+
         </div>
         <div class="scroll">
             {% for image in product.images.all %}
-                <a href="#"><img src="{{ image.image.url }}" alt="" width="62" height="62"/></a>
+            <a href="#">
+                <img onclick="onClick(this)" class="modal-hover-opacity " src="{{ image.image.url }}" width="62"
+                     height="62"/>
+            </a>
             {% endfor %}
         </div>
     </div>
-    <div class="description">
-        <p>
-            <strong>Описание</strong>
-            <br/>
-            {{ product.description }}
-        </p>
-        <p>
-            <a href="{% url 'cart:CartAdd' product_id=product.id %}" class="buy">Купить</a>
-        </p>
+
+    <div class="detailDescription">
+        <h4>{{product.name}}</h4><br/>
+        <span>{{product.price}} грн</span>
+        <div class="">
+            <p>
+                <strong>Описание</strong>
+                <br/>
+                {{ product.description }}
+            </p>
+            <p>
+                <a href="{% url 'cart:CartAdd' product_id=product.id %}" class="buy">Купить</a>
+            </p>
+
+        </div>
     </div>
 </div>
+
+
+<div id="modal01" class="modal" onclick="this.style.display='none'">
+    <a href="#"><span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span></a>
+    <div class="modal-content">
+        <img id="img01" style="max-width:100%">
+    </div>
+</div>
+
+<script>
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+}
+
+
+
+
+</script>
 {% endblock %}

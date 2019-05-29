@@ -1,3 +1,5 @@
+
+{% block content %}
 <div id="liqpay_checkout"></div>
 <script>
     window.LiqPayCheckoutCallback = function() {
@@ -15,5 +17,9 @@
             // close
         });
     };
+
+
 </script>
 <script src="//static.liqpay.ua/libjs/checkout.js" async></script>
+
+{% endblock %}

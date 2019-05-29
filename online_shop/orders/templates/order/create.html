@@ -1,0 +1,36 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+
+<div class="main content">
+    <h2>Оформление заказа</h2>
+
+    <div class="order-info col-sm-8">
+        <h2>Ваш заказ</h2>
+        <table class="orderTable">
+            {% for item in cart %}
+            <tr>
+                <td>
+                    {{ item.product.name }}
+                </td>
+                <td>
+                    {{ item.quantity }}
+                </td>
+                <td>
+                    {{ item.total_price }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <p><strong>Всего:</strong> {{ cart.get_total_price_after_discount|floatformat:"2"}} грн.</p>
+    </div>
+    <div class="">
+            <h3>Заполните форму</h3>
+            <form class="order-form" action="." method="post">
+                {{ form.as_ul }}
+                {% csrf_token %}
+                <input type="submit" value="Отправить">
+            </form>
+        </div>
+</div>
+    {% endblock %}

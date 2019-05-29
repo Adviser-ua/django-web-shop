@@ -1,0 +1,29 @@
+
+.orderTable td{
+    width: 300px;
+    border-bottom: 1px solid black;
+
+}
+
+ul li {
+    color: blue;
+    width:200px;
+    float:left;
+}
+
+form li {
+    border-bottom: 1px solid black;
+}
+
+form li label {
+    color: blue;
+    width:200px;
+    float:left;
+}
+
+form li input {
+    border: 1px solid black;
+
+    background: #ddd;
+    text-align: left
+}

@@ -10,6 +10,7 @@ from shop.models import Product
 class Order(models.Model):
     first_name = models.CharField(verbose_name='Имя', max_length=50)
     last_name = models.CharField(verbose_name='Фамилия', max_length=50)
+    contact_number = models.CharField(verbose_name='Номер телефона', default='', max_length=25)
     email = models.EmailField(verbose_name='Email')
     address = models.CharField(verbose_name='Адрес', max_length=250)
     city = models.CharField(verbose_name='Город', max_length=100)

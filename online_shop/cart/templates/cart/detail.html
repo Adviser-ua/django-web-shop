@@ -2,7 +2,6 @@
 {% load staticfiles %}
 {% block content %}
 
-
 <div class="main container content">
     <div class="cart transition is-open">
         <div class="table">
@@ -13,31 +12,64 @@
                 <div class="col">стоимость</div>
             </div>
             {% for item in cart %}
-                <div class="layout-inline row cartItem">
-                    <div class="col col-pro layout-inline">
-                        <a href="{% url 'shop:ProductDetail' item.product.id %}">
-                            <img class="cartImg" src="{{ item.product.images.first.image.url }}" alt="kitten"/>
-                        </a>
-                        <h2>{{ item.product.name}}</h2>
-                    </div>
-
-                    <div class="col col-price col-numeric align-center ">
-                        <p>{{item.product.price}}</p>
-                    </div>
-
-                    <div class="col col-qty layout-inline">
-                        <a href="{% url 'cart:CartRemove' product_id=item.product.id %}" class="qty qty-minus">-</a>
-                        <input type="numeric" value="{{ item.quantity}}"/>
-                        <a href="{% url 'cart:CartAdd' product_id=item.product.id %}" class="qty qty-plus">+</a>
-                    </div>
-
-                    <div class="col col-total col-numeric"><p>{{item.total_price}}</p>
-                    </div>
+            <div class="layout-inline row cartItem">
+                <div class="col col-pro layout-inline">
+                    <a href="{% url 'shop:ProductDetail' item.product.id %}">
+                        <img class="cartImg" src="{{ item.product.images.first.image.url }}" alt="kitten"/>
+                    </a>
+                    <h2>{{ item.product.name}}</h2>
                 </div>
+
+                <div class="col col-price col-numeric align-center ">
+                    <p>{{item.product.price}}</p>
+                </div>
+
+                <div class="col col-qty layout-inline">
+                    <a href="{% url 'cart:CartRemove' product_id=item.product.id %}" class="qty qty-minus">-</a>
+                    <input type="numeric" value="{{ item.quantity}}"/>
+                    <a href="{% url 'cart:CartAdd' product_id=item.product.id %}" class="qty qty-plus">+</a>
+                </div>
+
+                <div class="col col-total col-numeric"><p>{{item.total_price}}</p>
+                </div>
+            </div>
             {% endfor %}
         </div>
+        <a href="{% url 'orders:OrderCreate' %}">Заказать</a>
+
     </div>
 </div>
+
+<div id="modalPay" class="modal" onclick="this.style.display='none'">
+    <a href="#"><span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span></a>
+    <div class="modal-content">
+        <div id="liqpay_checkout"></div>
+    </div>
+</div>
+
+<script src="//static.liqpay.ua/libjs/checkout.js" async></script>
+<script>
+    window.LiqPayCheckoutCallback = function() {
+    LiqPayCheckout.init({
+        data: "{{ data }}",
+        signature: "{{ signature }}",
+        embedTo: "#liqpay_checkout",
+        mode: "embed" // embed || popup,
+    }).on("liqpay.callback", function(data){
+        console.log(data.status);
+        console.log(data);
+    }).on("liqpay.ready", function(data){
+        // ready
+    }).on("liqpay.close", function(data){
+        // close
+    });
+
+    function payOrder() {
+        document.getElementById("modalPay").style.display = "block";
+    }
+
+</script>
+
 {% endblock %}
 
 

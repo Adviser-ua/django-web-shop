@@ -18,6 +18,7 @@ def CartDelete(request, product_id):
     cart.delete(product)
     return redirect('cart:CartDetail')
 
+
 def CartRemove(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
