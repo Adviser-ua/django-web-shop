@@ -1,28 +1,49 @@
 {% extends 'shop/base.html' %}
-{% load static %}
-
 {% block content %}
+{% load my_tags %}
 
 <div id="main" class="main content">
+
+    <form method="get" action="{% url 'shop:search'%}">
+        <input type="search" name="name">
+        <input type="submit" value="поиск">
+    </form>
+
     <div class="items row">
         {% for product in products %}
 
-            <div class="item">
-                <a href="{% url 'shop:ProductDetail' product.id %}">
-                    <!--<img src="{{product.image.url}}" alt="" width="202" height="173"/>-->
-                    <img src="{{product.images.first.image.url}}" alt="" width="202" height="173"/>
-                    <br/>
-                </a>
-                <div class="price">
+        <div class="item">
+            <a href="{% url 'shop:ProductDetail' product.id %}">
+                <!--<img src="{{product.image.url}}" alt="" width="202" height="173"/>-->
+                <img src="{{product.images.first.image.url}}" alt="" width="202" height="173"/>
+                <br/>
+            </a>
+            <div class="price">
                 {{product.name}}
-                </div>
-                    <div class="price">
-                    {{product.price}}грн.
-                </div>
             </div>
+            <div class="price">
+                {{product.price}}грн.
+            </div>
+        </div>
         {% endfor %}
-
     </div>
 </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if products.has_previous %}
+                <a href="?{% url_replace request 'page' 1 %}">&laquo; first</a>
+                <a href="?{% url_replace request 'page' products.previous_page_number %}">previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ products.number }} of {{ products.paginator.num_pages }}.
+            </span>
+            {% if products.has_next %}
+                <a href="?{% url_replace request 'page' products.next_page_number %}">next</a>
+                <a href="?{% url_replace request 'page' products.paginator.num_pages %}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+
 
 {% endblock %}
