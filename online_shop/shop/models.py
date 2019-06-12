@@ -1,11 +1,5 @@
-import sys
-
-from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
-from PIL import Image
-from io import BytesIO
-# Create your models here.
-
+from django.conf import settings
 
 # Модель продукта
 from django.urls import reverse
@@ -45,4 +39,4 @@ class Product(models.Model):
 
 class ProductImages(models.Model):
     property = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='product/%Y/%m/%d/', blank=True, verbose_name="Изображение товара")
+    image = models.ImageField(upload_to=settings.MEDIA_DIR + 'product/%Y/%m/%d/', blank=True, verbose_name="Изображение товара")

@@ -16,21 +16,23 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+def get_public_ip():
+    from requests import get
+    ip = get('https://api.ipify.org').text
+    return ip
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e8wcu=rh1v%t(xg5&*392=)&sgc@ra=_@r_-uihyu#hjnauson'
-# SECRET_KEY = 'e8wcu=rh1v%t(xg5&*3f2=)&sgc@ra=_@r_-uihyu#hjnauson'
-
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = os.environ.get('DEBUG')
 LIQPAY_PUBLIC_KEY = os.environ.get('LIQPAY_PUBLIC_KEY')
 LIQPAY_PRIVATE_KEY = os.environ.get('LIQPAY_PRIVATE_KEY')
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['192.168.2.10', get_public_ip(), 'www.piton.icu', 'piton.icu', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -82,17 +84,28 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'online_shop.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
+if os.environ.get('SERVER') == 'DEV':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+elif os.environ.get('SERVER') == 'PROD':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.environ.get('DB_NAME'),
+            'USER': os.environ.get('DB_USER'),
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': 'localhost',
+            'PORT': 5432,
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -112,7 +125,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -126,25 +138,34 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn")
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),
-  #'/var/www/static/',
-]
+                    # '/var/www/static/',
+                    ]
 
 MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_DIR = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_DIR)
 
 # Session ID
 
 CART_SESSION_ID = 'cart'
 
+# This will make sure the app is always imported when
+# Django starts so that shared_task will use this app.
+from .celery import app as celery_app
 
+# CELERY STUFF
+BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Africa/Nairobi'
